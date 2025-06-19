@@ -25,11 +25,6 @@ public class EstudianteController {
         return service.getEstudianteById(id);
     }
 
-    @GetMapping("/isbn/{isbn}")
-    public Optional<Estudiante> obtenerPorIsbn(@PathVariable String isbn) {
-        return service.getEstudianteByIsbn(isbn);
-    }
-
     @PostMapping
     public Estudiante crear(@RequestBody Estudiante estudiante) {
         return service.saveEstudiante(estudiante);

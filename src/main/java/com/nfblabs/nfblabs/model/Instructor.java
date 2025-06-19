@@ -24,7 +24,4 @@ public class Instructor {
 
     @Column(name = "email", unique = true)
     private String email;
-
-    @Column(name = "isbn", unique = true)
-    private String isbn;
 }

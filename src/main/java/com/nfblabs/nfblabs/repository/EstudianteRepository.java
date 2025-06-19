@@ -17,10 +17,6 @@ public class EstudianteRepository {
         return estudiantes.stream().filter(e -> e.getId().equals(id)).findFirst();
     }
 
-    public Optional<Estudiante> findByIsbn(String isbn) {
-        return estudiantes.stream().filter(e -> e.getIsbn().equals(isbn)).findFirst();
-    }
-
     public Estudiante save(Estudiante estudiante) {
         estudiantes.add(estudiante);
         return estudiante;

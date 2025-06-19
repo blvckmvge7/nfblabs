@@ -22,10 +22,6 @@ public class InstructorService {
         return repository.findById(id);
     }
 
-    public Optional<Instructor> getInstructorByIsbn(String isbn) {
-        return repository.findByIsbn(isbn);
-    }
-
     public Instructor saveInstructor(Instructor instructor) {
         return repository.save(instructor);
     }
