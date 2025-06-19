@@ -17,10 +17,6 @@ public class InstructorRepository {
         return instructores.stream().filter(i -> i.getId().equals(id)).findFirst();
     }
 
-    public Optional<Instructor> findByIsbn(String isbn) {
-        return instructores.stream().filter(i -> i.getIsbn().equals(isbn)).findFirst();
-    }
-
     public Instructor save(Instructor instructor) {
         instructores.add(instructor);
         return instructor;

@@ -25,11 +25,6 @@ public class InstructorController {
         return service.getInstructorById(id);
     }
 
-    @GetMapping("/isbn/{isbn}")
-    public Optional<Instructor> obtenerPorIsbn(@PathVariable String isbn) {
-        return service.getInstructorByIsbn(isbn);
-    }
-
     @PostMapping
     public Instructor crear(@RequestBody Instructor instructor) {
         return service.saveInstructor(instructor);
