@@ -22,10 +22,6 @@ public class EstudianteService {
         return repository.findById(id);
     }
 
-    public Optional<Estudiante> getEstudianteByIsbn(String isbn) {
-        return repository.findByIsbn(isbn);
-    }
-
     public Estudiante saveEstudiante(Estudiante estudiante) {
         return repository.save(estudiante);
     }
