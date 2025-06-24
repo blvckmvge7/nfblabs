@@ -14,13 +14,27 @@ public class EvaluacionController {
     private EvaluacionService evaluacionService;
 
     @GetMapping
-    public List<Evaluacion> getAll() { return evaluacionService.findAll(); }
+    public List<Evaluacion> getAll() {
+        return evaluacionService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Evaluacion> getById(@PathVariable Long id) { return evaluacionService.findById(id); }
+    public Optional<Evaluacion> getById(@PathVariable Long id) {
+        return evaluacionService.findById(id);
+    }
+
     @PostMapping
-    public Evaluacion create(@RequestBody Evaluacion evaluacion) { return evaluacionService.save(evaluacion); }
+    public Evaluacion create(@RequestBody Evaluacion evaluacion) {
+        return evaluacionService.save(evaluacion);
+    }
+
     @PutMapping("/{id}")
-    public Evaluacion update(@PathVariable Long id, @RequestBody Evaluacion evaluacion) { return evaluacionService.update(id, evaluacion); }
+    public Evaluacion update(@PathVariable Long id, @RequestBody Evaluacion evaluacion) {
+        return evaluacionService.update(id, evaluacion);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return evaluacionService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        evaluacionService.delete(id);
+    }
 }

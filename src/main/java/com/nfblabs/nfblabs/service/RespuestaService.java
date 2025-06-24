@@ -11,9 +11,28 @@ import java.util.Optional;
 public class RespuestaService {
     @Autowired
     private RespuestaRepository respuestaRepository;
-    public List<Respuesta> findAll() { return respuestaRepository.findAll(); }
-    public Optional<Respuesta> findById(Long id) { return respuestaRepository.findById(id); }
-    public Respuesta save(Respuesta respuesta) { return respuestaRepository.save(respuesta); }
-    public Respuesta update(Long id, Respuesta respuesta) { return respuestaRepository.update(id, respuesta); }
-    public boolean delete(Long id) { return respuestaRepository.delete(id); }
+
+    public Respuesta save(Respuesta respuesta) {
+        return respuestaRepository.save(respuesta);
+    }
+
+    public List<Respuesta> findAll() {
+        return respuestaRepository.findAll();
+    }
+
+    public Optional<Respuesta> findById(Long id) {
+        return respuestaRepository.findById(id);
+    }
+
+    public Respuesta update(Long id, Respuesta respuesta) {
+        if (respuestaRepository.existsById(id)) {
+            respuesta.setId(id);
+            return respuestaRepository.save(respuesta);
+        }
+        throw new RuntimeException("Respuesta not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        respuestaRepository.deleteById(id);
+    }
 }

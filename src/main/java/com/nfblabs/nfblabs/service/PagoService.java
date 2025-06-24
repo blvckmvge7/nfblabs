@@ -11,9 +11,28 @@ import java.util.Optional;
 public class PagoService {
     @Autowired
     private PagoRepository pagoRepository;
-    public List<Pago> findAll() { return pagoRepository.findAll(); }
-    public Optional<Pago> findById(Long id) { return pagoRepository.findById(id); }
-    public Pago save(Pago pago) { return pagoRepository.save(pago); }
-    public Pago update(Long id, Pago pago) { return pagoRepository.update(id, pago); }
-    public boolean delete(Long id) { return pagoRepository.delete(id); }
+
+    public Pago save(Pago pago) {
+        return pagoRepository.save(pago);
+    }
+
+    public List<Pago> findAll() {
+        return pagoRepository.findAll();
+    }
+
+    public Optional<Pago> findById(Long id) {
+        return pagoRepository.findById(id);
+    }
+
+    public Pago update(Long id, Pago pago) {
+        if (pagoRepository.existsById(id)) {
+            pago.setId(id);
+            return pagoRepository.save(pago);
+        }
+        throw new RuntimeException("Pago not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        pagoRepository.deleteById(id);
+    }
 }

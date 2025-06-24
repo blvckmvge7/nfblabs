@@ -14,13 +14,27 @@ public class ComentarioController {
     private ComentarioService comentarioService;
 
     @GetMapping
-    public List<Comentario> getAll() { return comentarioService.findAll(); }
+    public List<Comentario> getAll() {
+        return comentarioService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Comentario> getById(@PathVariable Long id) { return comentarioService.findById(id); }
+    public Optional<Comentario> getById(@PathVariable Long id) {
+        return comentarioService.findById(id);
+    }
+
     @PostMapping
-    public Comentario create(@RequestBody Comentario comentario) { return comentarioService.save(comentario); }
+    public Comentario create(@RequestBody Comentario comentario) {
+        return comentarioService.save(comentario);
+    }
+
     @PutMapping("/{id}")
-    public Comentario update(@PathVariable Long id, @RequestBody Comentario comentario) { return comentarioService.update(id, comentario); }
+    public Comentario update(@PathVariable Long id, @RequestBody Comentario comentario) {
+        return comentarioService.update(id, comentario);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return comentarioService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        comentarioService.delete(id);
+    }
 }

@@ -34,7 +34,7 @@ public class InscripcionController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) {
-        return inscripcionService.delete(id);
+    public void delete(@PathVariable Long id) {
+        inscripcionService.delete(id);
     }
 }

@@ -1,38 +1,9 @@
 package com.nfblabs.nfblabs.repository;
 
 import com.nfblabs.nfblabs.model.Instructor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class InstructorRepository {
-
-    private List<Instructor> instructores = new ArrayList<>();
-
-    public List<Instructor> findAll() {
-        return instructores;
-    }
-
-    public Optional<Instructor> findById(Long id) {
-        return instructores.stream().filter(i -> i.getId().equals(id)).findFirst();
-    }
-
-    public Instructor save(Instructor instructor) {
-        instructores.add(instructor);
-        return instructor;
-    }
-
-    public Instructor update(Long id, Instructor updatedInstructor) {
-        for (int i = 0; i < instructores.size(); i++) {
-            if (instructores.get(i).getId().equals(id)) {
-                instructores.set(i, updatedInstructor);
-                return updatedInstructor;
-            }
-        }
-        return null;
-    }
-
-    public boolean deleteById(Long id) {
-        return instructores.removeIf(i -> i.getId().equals(id));
-    }
+@Repository
+public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 }

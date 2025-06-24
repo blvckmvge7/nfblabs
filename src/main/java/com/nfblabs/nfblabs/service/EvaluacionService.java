@@ -11,9 +11,28 @@ import java.util.Optional;
 public class EvaluacionService {
     @Autowired
     private EvaluacionRepository evaluacionRepository;
-    public List<Evaluacion> findAll() { return evaluacionRepository.findAll(); }
-    public Optional<Evaluacion> findById(Long id) { return evaluacionRepository.findById(id); }
-    public Evaluacion save(Evaluacion evaluacion) { return evaluacionRepository.save(evaluacion); }
-    public Evaluacion update(Long id, Evaluacion evaluacion) { return evaluacionRepository.update(id, evaluacion); }
-    public boolean delete(Long id) { return evaluacionRepository.delete(id); }
+
+    public Evaluacion save(Evaluacion evaluacion) {
+        return evaluacionRepository.save(evaluacion);
+    }
+
+    public List<Evaluacion> findAll() {
+        return evaluacionRepository.findAll();
+    }
+
+    public Optional<Evaluacion> findById(Long id) {
+        return evaluacionRepository.findById(id);
+    }
+
+    public Evaluacion update(Long id, Evaluacion evaluacion) {
+        if (evaluacionRepository.existsById(id)) {
+            evaluacion.setId(id);
+            return evaluacionRepository.save(evaluacion);
+        }
+        throw new RuntimeException("Evaluacion not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        evaluacionRepository.deleteById(id);
+    }
 }
