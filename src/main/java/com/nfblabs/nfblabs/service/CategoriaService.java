@@ -12,6 +12,10 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    public Categoria save(Categoria categoria) {
+        return categoriaRepository.save(categoria);
+    }
+
     public List<Categoria> findAll() {
         return categoriaRepository.findAll();
     }
@@ -20,19 +24,15 @@ public class CategoriaService {
         return categoriaRepository.findById(id);
     }
 
-    public Optional<Categoria> findByNombre(String nombre) {
-        return categoriaRepository.findByNombre(nombre);
-    }
-
-    public Categoria save(Categoria categoria) {
-        return categoriaRepository.save(categoria);
-    }
-
     public Categoria update(Long id, Categoria categoria) {
-        return categoriaRepository.update(id, categoria);
+        if (categoriaRepository.existsById(id)) {
+            categoria.setId(id);
+            return categoriaRepository.save(categoria);
+        }
+        throw new RuntimeException("Categoria not found with id " + id);
     }
 
-    public boolean delete(Long id) {
-        return categoriaRepository.delete(id);
+    public void delete(Long id) {
+        categoriaRepository.deleteById(id);
     }
 }

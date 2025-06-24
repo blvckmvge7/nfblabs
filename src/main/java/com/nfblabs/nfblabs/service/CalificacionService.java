@@ -11,9 +11,28 @@ import java.util.Optional;
 public class CalificacionService {
     @Autowired
     private CalificacionRepository calificacionRepository;
-    public List<Calificacion> findAll() { return calificacionRepository.findAll(); }
-    public Optional<Calificacion> findById(Long id) { return calificacionRepository.findById(id); }
-    public Calificacion save(Calificacion calificacion) { return calificacionRepository.save(calificacion); }
-    public Calificacion update(Long id, Calificacion calificacion) { return calificacionRepository.update(id, calificacion); }
-    public boolean delete(Long id) { return calificacionRepository.delete(id); }
+
+    public Calificacion save(Calificacion calificacion) {
+        return calificacionRepository.save(calificacion);
+    }
+
+    public List<Calificacion> findAll() {
+        return calificacionRepository.findAll();
+    }
+
+    public Optional<Calificacion> findById(Long id) {
+        return calificacionRepository.findById(id);
+    }
+
+    public Calificacion update(Long id, Calificacion calificacion) {
+        if (calificacionRepository.existsById(id)) {
+            calificacion.setId(id);
+            return calificacionRepository.save(calificacion);
+        }
+        throw new RuntimeException("Calificacion not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        calificacionRepository.deleteById(id);
+    }
 }

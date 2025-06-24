@@ -34,7 +34,7 @@ public class NotificacionController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) {
-        return notificacionService.delete(id);
+    public void delete(@PathVariable Long id) {
+        notificacionService.delete(id);
     }
 }

@@ -14,13 +14,27 @@ public class CertificadoController {
     private CertificadoService certificadoService;
 
     @GetMapping
-    public List<Certificado> getAll() { return certificadoService.findAll(); }
+    public List<Certificado> getAll() {
+        return certificadoService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Certificado> getById(@PathVariable Long id) { return certificadoService.findById(id); }
+    public Optional<Certificado> getById(@PathVariable Long id) {
+        return certificadoService.findById(id);
+    }
+
     @PostMapping
-    public Certificado create(@RequestBody Certificado certificado) { return certificadoService.save(certificado); }
+    public Certificado create(@RequestBody Certificado certificado) {
+        return certificadoService.save(certificado);
+    }
+
     @PutMapping("/{id}")
-    public Certificado update(@PathVariable Long id, @RequestBody Certificado certificado) { return certificadoService.update(id, certificado); }
+    public Certificado update(@PathVariable Long id, @RequestBody Certificado certificado) {
+        return certificadoService.update(id, certificado);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return certificadoService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        certificadoService.delete(id);
+    }
 }

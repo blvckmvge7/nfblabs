@@ -14,13 +14,27 @@ public class RespuestaController {
     private RespuestaService respuestaService;
 
     @GetMapping
-    public List<Respuesta> getAll() { return respuestaService.findAll(); }
+    public List<Respuesta> getAll() {
+        return respuestaService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Respuesta> getById(@PathVariable Long id) { return respuestaService.findById(id); }
+    public Optional<Respuesta> getById(@PathVariable Long id) {
+        return respuestaService.findById(id);
+    }
+
     @PostMapping
-    public Respuesta create(@RequestBody Respuesta respuesta) { return respuestaService.save(respuesta); }
+    public Respuesta create(@RequestBody Respuesta respuesta) {
+        return respuestaService.save(respuesta);
+    }
+
     @PutMapping("/{id}")
-    public Respuesta update(@PathVariable Long id, @RequestBody Respuesta respuesta) { return respuestaService.update(id, respuesta); }
+    public Respuesta update(@PathVariable Long id, @RequestBody Respuesta respuesta) {
+        return respuestaService.update(id, respuesta);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return respuestaService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        respuestaService.delete(id);
+    }
 }

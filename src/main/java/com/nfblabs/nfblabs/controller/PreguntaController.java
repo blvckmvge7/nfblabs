@@ -14,13 +14,27 @@ public class PreguntaController {
     private PreguntaService preguntaService;
 
     @GetMapping
-    public List<Pregunta> getAll() { return preguntaService.findAll(); }
+    public List<Pregunta> getAll() {
+        return preguntaService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Pregunta> getById(@PathVariable Long id) { return preguntaService.findById(id); }
+    public Optional<Pregunta> getById(@PathVariable Long id) {
+        return preguntaService.findById(id);
+    }
+
     @PostMapping
-    public Pregunta create(@RequestBody Pregunta pregunta) { return preguntaService.save(pregunta); }
+    public Pregunta create(@RequestBody Pregunta pregunta) {
+        return preguntaService.save(pregunta);
+    }
+
     @PutMapping("/{id}")
-    public Pregunta update(@PathVariable Long id, @RequestBody Pregunta pregunta) { return preguntaService.update(id, pregunta); }
+    public Pregunta update(@PathVariable Long id, @RequestBody Pregunta pregunta) {
+        return preguntaService.update(id, pregunta);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return preguntaService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        preguntaService.delete(id);
+    }
 }

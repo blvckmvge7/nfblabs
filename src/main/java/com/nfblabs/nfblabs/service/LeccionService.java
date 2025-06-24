@@ -11,9 +11,28 @@ import java.util.Optional;
 public class LeccionService {
     @Autowired
     private LeccionRepository leccionRepository;
-    public List<Leccion> findAll() { return leccionRepository.findAll(); }
-    public Optional<Leccion> findById(Long id) { return leccionRepository.findById(id); }
-    public Leccion save(Leccion leccion) { return leccionRepository.save(leccion); }
-    public Leccion update(Long id, Leccion leccion) { return leccionRepository.update(id, leccion); }
-    public boolean delete(Long id) { return leccionRepository.delete(id); }
+
+    public Leccion save(Leccion leccion) {
+        return leccionRepository.save(leccion);
+    }
+
+    public List<Leccion> findAll() {
+        return leccionRepository.findAll();
+    }
+
+    public Optional<Leccion> findById(Long id) {
+        return leccionRepository.findById(id);
+    }
+
+    public Leccion update(Long id, Leccion leccion) {
+        if (leccionRepository.existsById(id)) {
+            leccion.setId(id);
+            return leccionRepository.save(leccion);
+        }
+        throw new RuntimeException("Leccion not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        leccionRepository.deleteById(id);
+    }
 }

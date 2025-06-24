@@ -11,9 +11,28 @@ import java.util.Optional;
 public class ModuloService {
     @Autowired
     private ModuloRepository moduloRepository;
-    public List<Modulo> findAll() { return moduloRepository.findAll(); }
-    public Optional<Modulo> findById(Long id) { return moduloRepository.findById(id); }
-    public Modulo save(Modulo modulo) { return moduloRepository.save(modulo); }
-    public Modulo update(Long id, Modulo modulo) { return moduloRepository.update(id, modulo); }
-    public boolean delete(Long id) { return moduloRepository.delete(id); }
+
+    public Modulo save(Modulo modulo) {
+        return moduloRepository.save(modulo);
+    }
+
+    public List<Modulo> findAll() {
+        return moduloRepository.findAll();
+    }
+
+    public Optional<Modulo> findById(Long id) {
+        return moduloRepository.findById(id);
+    }
+
+    public Modulo update(Long id, Modulo modulo) {
+        if (moduloRepository.existsById(id)) {
+            modulo.setId(id);
+            return moduloRepository.save(modulo);
+        }
+        throw new RuntimeException("Modulo not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        moduloRepository.deleteById(id);
+    }
 }

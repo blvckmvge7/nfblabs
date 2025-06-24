@@ -11,9 +11,28 @@ import java.util.Optional;
 public class CertificadoService {
     @Autowired
     private CertificadoRepository certificadoRepository;
-    public List<Certificado> findAll() { return certificadoRepository.findAll(); }
-    public Optional<Certificado> findById(Long id) { return certificadoRepository.findById(id); }
-    public Certificado save(Certificado certificado) { return certificadoRepository.save(certificado); }
-    public Certificado update(Long id, Certificado certificado) { return certificadoRepository.update(id, certificado); }
-    public boolean delete(Long id) { return certificadoRepository.delete(id); }
+
+    public Certificado save(Certificado certificado) {
+        return certificadoRepository.save(certificado);
+    }
+
+    public List<Certificado> findAll() {
+        return certificadoRepository.findAll();
+    }
+
+    public Optional<Certificado> findById(Long id) {
+        return certificadoRepository.findById(id);
+    }
+
+    public Certificado update(Long id, Certificado certificado) {
+        if (certificadoRepository.existsById(id)) {
+            certificado.setId(id);
+            return certificadoRepository.save(certificado);
+        }
+        throw new RuntimeException("Certificado not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        certificadoRepository.deleteById(id);
+    }
 }

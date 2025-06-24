@@ -14,13 +14,27 @@ public class LeccionController {
     private LeccionService leccionService;
 
     @GetMapping
-    public List<Leccion> getAll() { return leccionService.findAll(); }
+    public List<Leccion> getAll() {
+        return leccionService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Leccion> getById(@PathVariable Long id) { return leccionService.findById(id); }
+    public Optional<Leccion> getById(@PathVariable Long id) {
+        return leccionService.findById(id);
+    }
+
     @PostMapping
-    public Leccion create(@RequestBody Leccion leccion) { return leccionService.save(leccion); }
+    public Leccion create(@RequestBody Leccion leccion) {
+        return leccionService.save(leccion);
+    }
+
     @PutMapping("/{id}")
-    public Leccion update(@PathVariable Long id, @RequestBody Leccion leccion) { return leccionService.update(id, leccion); }
+    public Leccion update(@PathVariable Long id, @RequestBody Leccion leccion) {
+        return leccionService.update(id, leccion);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return leccionService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        leccionService.delete(id);
+    }
 }

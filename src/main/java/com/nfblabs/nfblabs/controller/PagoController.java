@@ -14,13 +14,27 @@ public class PagoController {
     private PagoService pagoService;
 
     @GetMapping
-    public List<Pago> getAll() { return pagoService.findAll(); }
+    public List<Pago> getAll() {
+        return pagoService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Pago> getById(@PathVariable Long id) { return pagoService.findById(id); }
+    public Optional<Pago> getById(@PathVariable Long id) {
+        return pagoService.findById(id);
+    }
+
     @PostMapping
-    public Pago create(@RequestBody Pago pago) { return pagoService.save(pago); }
+    public Pago create(@RequestBody Pago pago) {
+        return pagoService.save(pago);
+    }
+
     @PutMapping("/{id}")
-    public Pago update(@PathVariable Long id, @RequestBody Pago pago) { return pagoService.update(id, pago); }
+    public Pago update(@PathVariable Long id, @RequestBody Pago pago) {
+        return pagoService.update(id, pago);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return pagoService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        pagoService.delete(id);
+    }
 }

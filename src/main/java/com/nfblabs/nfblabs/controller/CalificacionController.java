@@ -14,13 +14,27 @@ public class CalificacionController {
     private CalificacionService calificacionService;
 
     @GetMapping
-    public List<Calificacion> getAll() { return calificacionService.findAll(); }
+    public List<Calificacion> getAll() {
+        return calificacionService.findAll();
+    }
+
     @GetMapping("/{id}")
-    public Optional<Calificacion> getById(@PathVariable Long id) { return calificacionService.findById(id); }
+    public Optional<Calificacion> getById(@PathVariable Long id) {
+        return calificacionService.findById(id);
+    }
+
     @PostMapping
-    public Calificacion create(@RequestBody Calificacion calificacion) { return calificacionService.save(calificacion); }
+    public Calificacion create(@RequestBody Calificacion calificacion) {
+        return calificacionService.save(calificacion);
+    }
+
     @PutMapping("/{id}")
-    public Calificacion update(@PathVariable Long id, @RequestBody Calificacion calificacion) { return calificacionService.update(id, calificacion); }
+    public Calificacion update(@PathVariable Long id, @RequestBody Calificacion calificacion) {
+        return calificacionService.update(id, calificacion);
+    }
+
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) { return calificacionService.delete(id); }
+    public void delete(@PathVariable Long id) {
+        calificacionService.delete(id);
+    }
 }

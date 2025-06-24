@@ -4,33 +4,35 @@ import com.nfblabs.nfblabs.model.Estudiante;
 import com.nfblabs.nfblabs.repository.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EstudianteService {
-
     @Autowired
-    private EstudianteRepository repository;
+    private EstudianteRepository estudianteRepository;
 
-    public List<Estudiante> getAllEstudiantes() {
-        return repository.findAll();
+    public Estudiante save(Estudiante estudiante) {
+        return estudianteRepository.save(estudiante);
     }
 
-    public Optional<Estudiante> getEstudianteById(Long id) {
-        return repository.findById(id);
+    public List<Estudiante> findAll() {
+        return estudianteRepository.findAll();
     }
 
-    public Estudiante saveEstudiante(Estudiante estudiante) {
-        return repository.save(estudiante);
+    public Optional<Estudiante> findById(Long id) {
+        return estudianteRepository.findById(id);
     }
 
-    public Estudiante updateEstudiante(Long id, Estudiante estudiante) {
-        return repository.update(id, estudiante);
+    public Estudiante update(Long id, Estudiante estudiante) {
+        if (estudianteRepository.existsById(id)) {
+            estudiante.setId(id);
+            return estudianteRepository.save(estudiante);
+        }
+        throw new RuntimeException("Estudiante not found with id " + id);
     }
 
-    public boolean deleteEstudiante(Long id) {
-        return repository.deleteById(id);
+    public void delete(Long id) {
+        estudianteRepository.deleteById(id);
     }
 }

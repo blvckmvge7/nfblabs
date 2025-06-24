@@ -11,9 +11,28 @@ import java.util.Optional;
 public class ComentarioService {
     @Autowired
     private ComentarioRepository comentarioRepository;
-    public List<Comentario> findAll() { return comentarioRepository.findAll(); }
-    public Optional<Comentario> findById(Long id) { return comentarioRepository.findById(id); }
-    public Comentario save(Comentario comentario) { return comentarioRepository.save(comentario); }
-    public Comentario update(Long id, Comentario comentario) { return comentarioRepository.update(id, comentario); }
-    public boolean delete(Long id) { return comentarioRepository.delete(id); }
+
+    public Comentario save(Comentario comentario) {
+        return comentarioRepository.save(comentario);
+    }
+
+    public List<Comentario> findAll() {
+        return comentarioRepository.findAll();
+    }
+
+    public Optional<Comentario> findById(Long id) {
+        return comentarioRepository.findById(id);
+    }
+
+    public Comentario update(Long id, Comentario comentario) {
+        if (comentarioRepository.existsById(id)) {
+            comentario.setId(id);
+            return comentarioRepository.save(comentario);
+        }
+        throw new RuntimeException("Comentario not found with id " + id);
+    }
+
+    public void delete(Long id) {
+        comentarioRepository.deleteById(id);
+    }
 }

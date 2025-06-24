@@ -23,11 +23,6 @@ public class CategoriaController {
         return categoriaService.findById(id);
     }
 
-    @GetMapping("/nombre/{nombre}")
-    public Optional<Categoria> getByNombre(@PathVariable String nombre) {
-        return categoriaService.findByNombre(nombre);
-    }
-
     @PostMapping
     public Categoria create(@RequestBody Categoria categoria) {
         return categoriaService.save(categoria);
@@ -39,7 +34,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable Long id) {
-        return categoriaService.delete(id);
+    public void delete(@PathVariable Long id) {
+        categoriaService.delete(id);
     }
 }

@@ -12,6 +12,10 @@ public class NotificacionService {
     @Autowired
     private NotificacionRepository notificacionRepository;
 
+    public Notificacion save(Notificacion notificacion) {
+        return notificacionRepository.save(notificacion);
+    }
+
     public List<Notificacion> findAll() {
         return notificacionRepository.findAll();
     }
@@ -20,15 +24,15 @@ public class NotificacionService {
         return notificacionRepository.findById(id);
     }
 
-    public Notificacion save(Notificacion notificacion) {
-        return notificacionRepository.save(notificacion);
-    }
-
     public Notificacion update(Long id, Notificacion notificacion) {
-        return notificacionRepository.update(id, notificacion);
+        if (notificacionRepository.existsById(id)) {
+            notificacion.setId(id);
+            return notificacionRepository.save(notificacion);
+        }
+        throw new RuntimeException("Notificacion not found with id " + id);
     }
 
-    public boolean delete(Long id) {
-        return notificacionRepository.delete(id);
+    public void delete(Long id) {
+        notificacionRepository.deleteById(id);
     }
 }
